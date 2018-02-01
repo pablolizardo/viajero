@@ -11,3 +11,7 @@ func _ready():
 	#.get_surface_material(0).albedo_color = Color(heightNew/10,1,0.5,0.1)
 	#mesh.get_surface_material(0).albedo_color = color
 	pass
+
+func _on_Tween_tween_completed( object, key ):
+	print('anim finished')
+	pass # replace with function body
