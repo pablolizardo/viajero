@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/char_viajero.obj-15cf3521c229e546f8fc7bb5e4f21859.mesh"
+
+[deps]
+
+files=[ "res://.import/char_viajero.obj-15cf3521c229e546f8fc7bb5e4f21859.mesh" ]
+
+source_file="res://Meshes/char_viajero.obj"
+source_md5="fb3233a4dc22d3fbff3d2c4ea7971354"
+
+dest_files=[ "res://.import/char_viajero.obj-15cf3521c229e546f8fc7bb5e4f21859.mesh", "res://.import/char_viajero.obj-15cf3521c229e546f8fc7bb5e4f21859.mesh" ]
+dest_md5="57458ef9c994d41d41ebef9443ebf22a"
+
+[params]
+
+generate_tangents=true

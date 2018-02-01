@@ -1,0 +1,33 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path.s3tc="res://.import/Captura de pantalla de 2018-01-19 14-06-50.png-4422854908da5027efd6de84d30ea1d8.s3tc.stex"
+path.etc2="res://.import/Captura de pantalla de 2018-01-19 14-06-50.png-4422854908da5027efd6de84d30ea1d8.etc2.stex"
+
+[deps]
+
+source_file="res://img/Captura de pantalla de 2018-01-19 14-06-50.png"
+source_md5="23810e3d282dadae0d62f36dc7d77fcc"
+
+dest_files=[ "res://.import/Captura de pantalla de 2018-01-19 14-06-50.png-4422854908da5027efd6de84d30ea1d8.s3tc.stex", "res://.import/Captura de pantalla de 2018-01-19 14-06-50.png-4422854908da5027efd6de84d30ea1d8.etc2.stex" ]
+dest_md5="39741199011a6d29b9ed478e88bfd590"
+
+[params]
+
+compress/mode=2
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/normal_map=0
+flags/repeat=true
+flags/filter=true
+flags/mipmaps=true
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0
