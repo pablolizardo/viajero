@@ -7,9 +7,10 @@ onready var Goal = get_node("Goal")
 onready var cam = get_node("cam")
 onready var Tiempo = get_node("Tiempo")
 onready var UI_tiempo = get_node("UI/tiempo_value")
+onready var Char = get_node("Char")
 
-export var sizeX = 10
-export var sizeY = 10
+export var sizeX = 20
+export var sizeY = 20
 export var sizeZ = 3
 
 var GROW_ANIM = 5
@@ -50,7 +51,6 @@ func _ready():
 			if(index == goal ):
 				h = sizeZ +2
 			rows.append(h)
-	
 
 	#generacion de bricks
 	for j in range(sizeX):
@@ -84,10 +84,16 @@ func _ready():
 
 			#blockNew.get_node("cubo_mesh").get_surface_material().set("alpha", 0.3)
 			#blockNew.get_node("RayCast").get_collision_point()
+	
+	# setear posicion del halo de luz en la posicion mas alta
 	Goal.translation.x = maximun_pos.x- sizeX/2
 	Goal.translation.z = maximun_pos.y- sizeY/2
 	Goal.translation.y= maximun
 	
+	# setear posicion del personaje en la posicion mas baja
+	Char.translation.x = minimun_pos.x- sizeX/2
+	Char.translation.z = minimun_pos.y- sizeY/2
+	Char.translation.y= minimun
 	
 
 func _on_Timer_timeout():

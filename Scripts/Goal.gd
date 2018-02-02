@@ -2,8 +2,10 @@ extends Spatial
 
 onready var tw = get_node("Tween")
 onready var timer = get_node("Timer")
+onready var root = get_parent()
 
 func _ready():
+	timer.wait_time = root.GROW_ANIM
 	timer.start()
 
 		
