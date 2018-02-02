@@ -12,7 +12,6 @@ config_version=3
 
 config/name="Viajero"
 run/main_scene="res://Scenes/Level.tscn"
-run/low_processor_mode=true
 boot_splash/image="res://icon.png"
 boot_splash/fullsize=false
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
@@ -23,8 +22,6 @@ config/icon="res://icon.png"
 window/size/width=375
 window/size/height=667
 window/handheld/orientation="portrait"
-window/stretch/mode="2d"
-window/stretch/aspect="keep"
 
 [input]
 
@@ -52,9 +49,4 @@ view_map=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":
 
 [rendering]
 
-quality/filters/anisotropic_filter_level=2
-quality/directional_shadow/size=512
-quality/shadow_atlas/size=512
-quality/reflections/texture_array_reflections=false
-quality/reflections/high_quality_ggx=false
 environment/default_environment="res://default_env.tres"

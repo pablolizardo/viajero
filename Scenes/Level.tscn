@@ -3,9 +3,9 @@
 [ext_resource path="res://Scripts/Level.gd" type="Script" id=1]
 [ext_resource path="res://Enviroments/rojo.tres" type="Environment" id=2]
 [ext_resource path="res://Scripts/cam.gd" type="Script" id=3]
-[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scripts/Goal.gd" type="Script" id=5]
-[ext_resource path="res://Thems/viajero.tres" type="Theme" id=6]
+[ext_resource path="res://Scripts/Goal.gd" type="Script" id=4]
+[ext_resource path="res://Thems/viajero.tres" type="Theme" id=5]
+[ext_resource path="res://Scripts/Char.gd" type="Script" id=6]
 
 [sub_resource type="CylinderMesh" id=1]
 
@@ -144,6 +144,7 @@ environment = ExtResource( 2 )
 
 [node name="cam" type="Spatial" parent="." index="1"]
 
+editor/display_folded = true
 transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707106, 0, 0, 0 )
 script = ExtResource( 3 )
 _sections_unfolded = [ "Transform" ]
@@ -175,12 +176,7 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[node name="Player" parent="." index="2" instance=ExtResource( 4 )]
-
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0 )
-visible = false
-
-[node name="Lights" type="Spatial" parent="." index="3"]
+[node name="Lights" type="Spatial" parent="." index="2"]
 
 editor/display_folded = true
 _sections_unfolded = [ "Transform" ]
@@ -210,10 +206,10 @@ _sections_unfolded = [ "Light", "Shadow", "Spot" ]
 
 [node name="sun" type="DirectionalLight" parent="Lights" index="1"]
 
-transform = Transform( 0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, 0, 0, 0 )
+transform = Transform( 0.672277, 0.276078, -0.686895, 0.70695, -0.51477, 0.485008, -0.219693, -0.811661, -0.541242, 0, 0, -9.30395 )
 layers = 1
 light_color = Color( 1, 1, 1, 1 )
-light_energy = 1.5
+light_energy = 3.0
 light_indirect_energy = 0.26
 light_negative = false
 light_specular = 0.26
@@ -236,11 +232,11 @@ directional_shadow_depth_range = 0
 directional_shadow_max_distance = 200.0
 _sections_unfolded = [ "Directional Shadow", "Light", "Shadow", "Spot", "Transform" ]
 
-[node name="Goal" type="Spatial" parent="." index="4"]
+[node name="Goal" type="Spatial" parent="." index="3"]
 
 editor/display_folded = true
-transform = Transform( 0, 0, 0, 0, 1, 0, 0, 0, 0, 2, 5, -1 )
-script = ExtResource( 5 )
+transform = Transform( 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 5, 0 )
+script = ExtResource( 4 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="MeshInstance" type="MeshInstance" parent="Goal" index="0"]
@@ -276,7 +272,7 @@ wait_time = 5.0
 one_shot = true
 autostart = true
 
-[node name="UI" type="Control" parent="." index="5"]
+[node name="UI" type="Control" parent="." index="4"]
 
 editor/display_folded = true
 anchor_left = 0.0
@@ -304,7 +300,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 5
-theme = ExtResource( 6 )
+theme = ExtResource( 5 )
 text = "0"
 valign = 1
 percent_visible = 1.0
@@ -374,7 +370,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 5
-theme = ExtResource( 6 )
+theme = ExtResource( 5 )
 text = "0"
 align = 2
 valign = 1
@@ -384,19 +380,21 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Anchor", "Margin", "Size Flags", "Theme", "Visibility", "custom_fonts" ]
 
-[node name="Tiempo" type="Timer" parent="." index="6"]
+[node name="Tiempo" type="Timer" parent="." index="5"]
 
 process_mode = 1
 wait_time = 1000.0
 one_shot = false
 autostart = true
 
-[node name="Char" type="Spatial" parent="." index="56"]
+[node name="Char" type="Spatial" parent="." index="6"]
 
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.03095, 0 )
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -2 )
+script = ExtResource( 6 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="MeshInstance" type="MeshInstance" parent="Char" index="0"]
+[node name="CharMesh" type="MeshInstance" parent="Char" index="0"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 layers = 1
@@ -412,6 +410,15 @@ mesh = SubResource( 5 )
 skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Transform" ]
+
+[node name="Tween" type="Tween" parent="Char" index="1"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
 
 [connection signal="timeout" from="Goal/Timer" to="." method="_on_Timer_timeout"]
 

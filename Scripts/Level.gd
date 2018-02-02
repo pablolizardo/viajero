@@ -26,7 +26,7 @@ var maximun = 0
 var minimun = 99
 var maximun_pos = Vector2()
 var minimun_pos = Vector2()
-var mat
+#var mat
 
 var rows = []
 var cols = []
@@ -72,9 +72,9 @@ func _ready():
 			tween.start()
 
 			#blockNew.scale.y = heightNew
-			mat = blockNew.get_node("cubo_mesh").get_surface_material(0).duplicate()
-			mat.albedo_color = Color(heightNew*8,0.5,0,1)
-			blockNew.get_node("cubo_mesh").set_surface_material(0,mat)
+			#mat = blockNew.get_node("cubo_mesh").get_surface_material(0).duplicate()
+			#mat.albedo_color = Color(heightNew*8,0.5,0,1)
+			#blockNew.get_node("cubo_mesh").set_surface_material(0,mat)
 			#blockNew.get_node("cubo_mesh").get_surface_material(0).albedo_color = Color(heightNew/10,1,0.5,0.1)
 			#blockNew.color = Color(heightNew/10,rand_range(0,1),1)
 			add_child(blockNew)
