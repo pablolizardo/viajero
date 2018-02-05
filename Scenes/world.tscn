@@ -1,0 +1,904 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Scripts/world.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/brick.gd" type="Script" id=2]
+[ext_resource path="res://Enviroments/rojo.tres" type="Environment" id=3]
+[ext_resource path="res://Materials/Blanco_transparente.tres" type="Material" id=4]
+
+[sub_resource type="BoxShape" id=1]
+
+extents = Vector3( 0.5, 0.5, 0.5 )
+
+[sub_resource type="CubeMesh" id=2]
+
+size = Vector3( 1, 1, 1 )
+subdivide_width = 0
+subdivide_height = 0
+subdivide_depth = 0
+
+[sub_resource type="SpatialMaterial" id=3]
+
+render_priority = 0
+flags_transparent = false
+flags_unshaded = false
+flags_vertex_lighting = false
+flags_no_depth_test = false
+flags_use_point_size = false
+flags_world_triplanar = false
+flags_fixed_size = false
+flags_albedo_tex_force_srgb = false
+vertex_color_use_as_albedo = false
+vertex_color_is_srgb = false
+params_diffuse_mode = 0
+params_specular_mode = 0
+params_blend_mode = 0
+params_cull_mode = 0
+params_depth_draw_mode = 0
+params_line_width = 1.0
+params_point_size = 1.0
+params_billboard_mode = 0
+params_grow = false
+params_use_alpha_scissor = false
+albedo_color = Color( 1, 1, 1, 1 )
+metallic = 0.0
+metallic_specular = 0.5
+metallic_texture_channel = 0
+roughness = 0.0
+roughness_texture_channel = 0
+emission_enabled = false
+normal_enabled = false
+rim_enabled = false
+clearcoat_enabled = false
+anisotropy_enabled = false
+ao_enabled = false
+depth_enabled = false
+subsurf_scatter_enabled = false
+transmission_enabled = false
+refraction_enabled = false
+detail_enabled = false
+uv1_scale = Vector3( 1, 1, 1 )
+uv1_offset = Vector3( 0, 0, 0 )
+uv1_triplanar = false
+uv1_triplanar_sharpness = 1.0
+uv2_scale = Vector3( 1, 1, 1 )
+uv2_offset = Vector3( 0, 0, 0 )
+uv2_triplanar = false
+uv2_triplanar_sharpness = 1.0
+proximity_fade_enable = false
+distance_fade_enable = false
+
+[sub_resource type="CubeMesh" id=4]
+
+size = Vector3( 0.7, 2, 0.2 )
+subdivide_width = 0
+subdivide_height = 0
+subdivide_depth = 0
+
+[sub_resource type="SpatialMaterial" id=5]
+
+render_priority = 0
+flags_transparent = false
+flags_unshaded = false
+flags_vertex_lighting = false
+flags_no_depth_test = false
+flags_use_point_size = false
+flags_world_triplanar = false
+flags_fixed_size = false
+flags_albedo_tex_force_srgb = false
+vertex_color_use_as_albedo = false
+vertex_color_is_srgb = false
+params_diffuse_mode = 0
+params_specular_mode = 0
+params_blend_mode = 0
+params_cull_mode = 0
+params_depth_draw_mode = 0
+params_line_width = 1.0
+params_point_size = 1.0
+params_billboard_mode = 0
+params_grow = false
+params_use_alpha_scissor = false
+albedo_color = Color( 0, 0.976562, 1, 1 )
+metallic = 0.0
+metallic_specular = 0.5
+metallic_texture_channel = 0
+roughness = 0.0
+roughness_texture_channel = 0
+emission_enabled = false
+normal_enabled = false
+rim_enabled = false
+clearcoat_enabled = false
+anisotropy_enabled = false
+ao_enabled = false
+depth_enabled = false
+subsurf_scatter_enabled = false
+transmission_enabled = false
+refraction_enabled = false
+detail_enabled = false
+uv1_scale = Vector3( 1, 1, 1 )
+uv1_offset = Vector3( 0, 0, 0 )
+uv1_triplanar = false
+uv1_triplanar_sharpness = 1.0
+uv2_scale = Vector3( 1, 1, 1 )
+uv2_offset = Vector3( 0, 0, 0 )
+uv2_triplanar = false
+uv2_triplanar_sharpness = 1.0
+proximity_fade_enable = false
+distance_fade_enable = false
+_sections_unfolded = [ "Albedo" ]
+
+[sub_resource type="CylinderMesh" id=6]
+
+material = ExtResource( 4 )
+top_radius = 0.3
+bottom_radius = 0.3
+height = 40.0
+radial_segments = 6
+rings = 1
+
+[node name="world" type="Spatial" index="0"]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+gameSize = Vector3( 10, 4, 10 )
+
+[node name="brick" type="Spatial" parent="." index="0" groups=[
+"bricks",
+]]
+
+script = ExtResource( 2 )
+
+[node name="Area" type="Area" parent="brick" index="0"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5 )
+input_ray_pickable = false
+input_capture_on_drag = false
+space_override = 0
+gravity_point = false
+gravity_distance_scale = 0.0
+gravity_vec = Vector3( 0, -1, 0 )
+gravity = 9.8
+linear_damp = 0.1
+angular_damp = 1.0
+priority = 0.0
+monitoring = true
+monitorable = true
+collision_layer = 1
+collision_mask = 1
+audio_bus_override = false
+audio_bus_name = "Master"
+reverb_bus_enable = false
+reverb_bus_name = "Master"
+reverb_bus_amount = 0.0
+reverb_bus_uniformity = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="brick/Area" index="0"]
+
+shape = SubResource( 1 )
+disabled = false
+
+[node name="MeshInstance" type="MeshInstance" parent="brick" index="1"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 2 )
+skeleton = NodePath("..")
+material/0 = SubResource( 3 )
+_sections_unfolded = [ "Transform", "material" ]
+
+[node name="player" type="Spatial" parent="." index="1"]
+
+_sections_unfolded = [ "Transform" ]
+
+[node name="MeshInstance" type="MeshInstance" parent="player" index="0"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0.5 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 4 )
+skeleton = NodePath("..")
+material/0 = SubResource( 5 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="MeshInstance2" type="MeshInstance" parent="player" index="1"]
+
+transform = Transform( 0.724473, 0, 0, 0, 0.44167, 0, 0, 0, 1.74695, 0.5, 1.35913, 0.687408 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 4 )
+skeleton = NodePath("..")
+material/0 = SubResource( 5 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Camera" type="Camera" parent="." index="2"]
+
+transform = Transform( 0.707107, 0.40558, -0.579228, 0, 0.819152, 0.573576, 0.707107, -0.40558, 0.579228, -8, 9, 18 )
+keep_aspect = 1
+cull_mask = 1048575
+environment = ExtResource( 3 )
+h_offset = 0.0
+v_offset = 0.0
+doppler_tracking = 0
+projection = 1
+current = false
+fov = 70.0
+size = 30.0
+near = 0.05
+far = 100.0
+
+[node name="DirectionalLight" type="DirectionalLight" parent="." index="3"]
+
+transform = Transform( 0.766044, -0.321394, 0.55667, 0, 0.866025, 0.5, -0.642788, -0.383022, 0.663414, 0, 0, 0 )
+layers = 1
+light_color = Color( 1, 1, 1, 1 )
+light_energy = 1.0
+light_indirect_energy = 1.0
+light_negative = false
+light_specular = 0.5
+light_bake_mode = 1
+light_cull_mask = -1
+shadow_enabled = false
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_bias = 0.1
+shadow_contact = 0.0
+shadow_reverse_cull_face = false
+editor_only = false
+directional_shadow_mode = 2
+directional_shadow_split_1 = 0.1
+directional_shadow_split_2 = 0.2
+directional_shadow_split_3 = 0.5
+directional_shadow_blend_splits = false
+directional_shadow_normal_bias = 0.8
+directional_shadow_bias_split_scale = 0.25
+directional_shadow_depth_range = 0
+directional_shadow_max_distance = 200.0
+
+[node name="gate" type="Spatial" parent="." index="4"]
+
+_sections_unfolded = [ "Transform" ]
+
+[node name="MeshInstance" type="MeshInstance" parent="gate" index="0"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 20, 0.5 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 6 )
+skeleton = NodePath("..")
+material/0 = null
+_sections_unfolded = [ "Transform" ]
+
+[connection signal="mouse_entered" from="brick/Area" to="brick" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick/Area" to="brick" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick2/Area" to="brick2" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick2/Area" to="brick2" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick2/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick3/Area" to="brick3" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick3/Area" to="brick3" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick3/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick4/Area" to="brick4" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick4/Area" to="brick4" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick4/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick5/Area" to="brick5" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick5/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick5/Area" to="brick5" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick6/Area" to="brick6" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick6/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick6/Area" to="brick6" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick7/Area" to="brick7" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick7/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick7/Area" to="brick7" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick8/Area" to="brick8" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick8/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick8/Area" to="brick8" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick9/Area" to="brick9" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick9/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick9/Area" to="brick9" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick10/Area" to="brick10" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick10/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick10/Area" to="brick10" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick11/Area" to="brick11" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick11/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick11/Area" to="brick11" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick12/Area" to="brick12" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick12/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick12/Area" to="brick12" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick13/Area" to="brick13" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick13/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick13/Area" to="brick13" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick14/Area" to="brick14" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick14/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick14/Area" to="brick14" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick15/Area" to="brick15" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick15/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick15/Area" to="brick15" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick16/Area" to="brick16" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick16/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick16/Area" to="brick16" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick17/Area" to="brick17" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick17/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick17/Area" to="brick17" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick18/Area" to="brick18" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick18/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick18/Area" to="brick18" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick19/Area" to="brick19" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick19/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick19/Area" to="brick19" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick20/Area" to="brick20" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick20/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick20/Area" to="brick20" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick21/Area" to="brick21" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick21/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick21/Area" to="brick21" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick22/Area" to="brick22" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick22/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick22/Area" to="brick22" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick23/Area" to="brick23" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick23/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick23/Area" to="brick23" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick24/Area" to="brick24" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick24/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick24/Area" to="brick24" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick25/Area" to="brick25" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick25/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick25/Area" to="brick25" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick26/Area" to="brick26" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick26/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick26/Area" to="brick26" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick27/Area" to="brick27" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick27/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick27/Area" to="brick27" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick28/Area" to="brick28" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick28/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick28/Area" to="brick28" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick29/Area" to="brick29" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick29/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick29/Area" to="brick29" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick30/Area" to="brick30" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick30/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick30/Area" to="brick30" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick31/Area" to="brick31" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick31/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick31/Area" to="brick31" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick32/Area" to="brick32" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick32/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick32/Area" to="brick32" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick33/Area" to="brick33" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick33/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick33/Area" to="brick33" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick34/Area" to="brick34" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick34/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick34/Area" to="brick34" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick35/Area" to="brick35" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick35/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick35/Area" to="brick35" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick36/Area" to="brick36" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick36/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick36/Area" to="brick36" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick37/Area" to="brick37" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick37/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick37/Area" to="brick37" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick38/Area" to="brick38" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick38/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick38/Area" to="brick38" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick39/Area" to="brick39" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick39/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick39/Area" to="brick39" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick40/Area" to="brick40" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick40/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick40/Area" to="brick40" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick41/Area" to="brick41" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick41/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick41/Area" to="brick41" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick42/Area" to="brick42" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick42/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick42/Area" to="brick42" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick43/Area" to="brick43" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick43/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick43/Area" to="brick43" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick44/Area" to="brick44" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick44/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick44/Area" to="brick44" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick45/Area" to="brick45" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick45/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick45/Area" to="brick45" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick46/Area" to="brick46" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick46/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick46/Area" to="brick46" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick47/Area" to="brick47" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick47/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick47/Area" to="brick47" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick48/Area" to="brick48" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick48/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick48/Area" to="brick48" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick49/Area" to="brick49" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick49/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick49/Area" to="brick49" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick50/Area" to="brick50" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick50/Area" to="brick50" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick50/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick51/Area" to="brick51" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick51/Area" to="brick51" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick51/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick52/Area" to="brick52" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick52/Area" to="brick52" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick52/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick53/Area" to="brick53" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick53/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick53/Area" to="brick53" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick54/Area" to="brick54" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick54/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick54/Area" to="brick54" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick55/Area" to="brick55" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick55/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick55/Area" to="brick55" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick56/Area" to="brick56" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick56/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick56/Area" to="brick56" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick57/Area" to="brick57" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick57/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick57/Area" to="brick57" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick58/Area" to="brick58" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick58/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick58/Area" to="brick58" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick59/Area" to="brick59" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick59/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick59/Area" to="brick59" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick60/Area" to="brick60" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick60/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick60/Area" to="brick60" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick61/Area" to="brick61" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick61/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick61/Area" to="brick61" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick62/Area" to="brick62" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick62/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick62/Area" to="brick62" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick63/Area" to="brick63" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick63/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick63/Area" to="brick63" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick64/Area" to="brick64" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick64/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick64/Area" to="brick64" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick65/Area" to="brick65" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick65/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick65/Area" to="brick65" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick66/Area" to="brick66" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick66/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick66/Area" to="brick66" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick67/Area" to="brick67" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick67/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick67/Area" to="brick67" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick68/Area" to="brick68" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick68/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick68/Area" to="brick68" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick69/Area" to="brick69" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick69/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick69/Area" to="brick69" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick70/Area" to="brick70" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick70/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick70/Area" to="brick70" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick71/Area" to="brick71" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick71/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick71/Area" to="brick71" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick72/Area" to="brick72" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick72/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick72/Area" to="brick72" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick73/Area" to="brick73" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick73/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick73/Area" to="brick73" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick74/Area" to="brick74" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick74/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick74/Area" to="brick74" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick75/Area" to="brick75" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick75/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick75/Area" to="brick75" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick76/Area" to="brick76" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick76/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick76/Area" to="brick76" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick77/Area" to="brick77" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick77/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick77/Area" to="brick77" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick78/Area" to="brick78" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick78/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick78/Area" to="brick78" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick79/Area" to="brick79" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick79/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick79/Area" to="brick79" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick80/Area" to="brick80" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick80/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick80/Area" to="brick80" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick81/Area" to="brick81" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick81/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick81/Area" to="brick81" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick82/Area" to="brick82" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick82/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick82/Area" to="brick82" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick83/Area" to="brick83" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick83/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick83/Area" to="brick83" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick84/Area" to="brick84" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick84/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick84/Area" to="brick84" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick85/Area" to="brick85" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick85/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick85/Area" to="brick85" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick86/Area" to="brick86" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick86/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick86/Area" to="brick86" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick87/Area" to="brick87" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick87/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick87/Area" to="brick87" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick88/Area" to="brick88" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick88/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick88/Area" to="brick88" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick89/Area" to="brick89" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick89/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick89/Area" to="brick89" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick90/Area" to="brick90" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick90/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick90/Area" to="brick90" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick91/Area" to="brick91" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick91/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick91/Area" to="brick91" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick92/Area" to="brick92" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick92/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick92/Area" to="brick92" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick93/Area" to="brick93" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick93/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick93/Area" to="brick93" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick94/Area" to="brick94" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick94/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick94/Area" to="brick94" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick95/Area" to="brick95" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick95/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick95/Area" to="brick95" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick96/Area" to="brick96" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick96/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick96/Area" to="brick96" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick97/Area" to="brick97" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick97/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick97/Area" to="brick97" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick98/Area" to="brick98" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick98/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick98/Area" to="brick98" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick99/Area" to="brick99" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick99/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick99/Area" to="brick99" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick100/Area" to="brick100" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick100/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick100/Area" to="brick100" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_entered" from="brick101/Area" to="brick101" method="_on_Area_mouse_entered"]
+
+[connection signal="mouse_exited" from="brick101/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick101/Area" to="brick101" method="_on_Area_mouse_exited"]
+
+

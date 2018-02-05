@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/Level.gd" type="Script" id=1]
 [ext_resource path="res://Enviroments/rojo.tres" type="Environment" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scripts/Goal.gd" type="Script" id=4]
 [ext_resource path="res://Thems/viajero.tres" type="Theme" id=5]
 [ext_resource path="res://Scripts/Char.gd" type="Script" id=6]
+[ext_resource path="res://Materials/Blanco_transparente.tres" type="Material" id=7]
 
 [sub_resource type="CylinderMesh" id=1]
 
@@ -70,73 +71,26 @@ _sections_unfolded = [ "Albedo", "Flags", "Parameters", "Vertex Color" ]
 [sub_resource type="Theme" id=3]
 
 
-[sub_resource type="SpatialMaterial" id=4]
-
-render_priority = 0
-flags_transparent = true
-flags_unshaded = false
-flags_vertex_lighting = false
-flags_no_depth_test = false
-flags_use_point_size = false
-flags_world_triplanar = false
-flags_fixed_size = false
-flags_albedo_tex_force_srgb = false
-vertex_color_use_as_albedo = false
-vertex_color_is_srgb = false
-params_diffuse_mode = 0
-params_specular_mode = 0
-params_blend_mode = 0
-params_cull_mode = 0
-params_depth_draw_mode = 0
-params_line_width = 1.0
-params_point_size = 1.0
-params_billboard_mode = 0
-params_grow = false
-params_use_alpha_scissor = false
-albedo_color = Color( 1, 1, 1, 0.195882 )
-metallic = 0.0
-metallic_specular = 0.5
-metallic_texture_channel = 0
-roughness = 0.0
-roughness_texture_channel = 0
-emission_enabled = false
-normal_enabled = false
-rim_enabled = false
-clearcoat_enabled = false
-anisotropy_enabled = false
-ao_enabled = false
-depth_enabled = false
-subsurf_scatter_enabled = false
-transmission_enabled = false
-refraction_enabled = false
-detail_enabled = false
-uv1_scale = Vector3( 1, 1, 1 )
-uv1_offset = Vector3( 0, 0, 0 )
-uv1_triplanar = false
-uv1_triplanar_sharpness = 1.0
-uv2_scale = Vector3( 1, 1, 1 )
-uv2_offset = Vector3( 0, 0, 0 )
-uv2_triplanar = false
-uv2_triplanar_sharpness = 1.0
-proximity_fade_enable = false
-distance_fade_enable = false
-_sections_unfolded = [ "Albedo", "Flags", "Parameters", "Vertex Color" ]
-
 [sub_resource type="CubeMesh" id=5]
 
-material = SubResource( 4 )
+material = ExtResource( 7 )
 size = Vector3( 0.7, 2, 0.7 )
 subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[node name="world" type="Spatial" index="0"]
+[sub_resource type="CylinderMesh" id=6]
+
+top_radius = 0.3
+bottom_radius = 0.3
+height = 0.1
+radial_segments = 6
+rings = 1
+
+[node name="world" type="Spatial"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
-sizeX = 5
-sizeY = 4
-sizeZ = 3
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
 
@@ -209,7 +163,7 @@ _sections_unfolded = [ "Light", "Shadow", "Spot" ]
 transform = Transform( 0.672277, 0.276078, -0.686895, 0.70695, -0.51477, 0.485008, -0.219693, -0.811661, -0.541242, 0, 0, -9.30395 )
 layers = 1
 light_color = Color( 1, 1, 1, 1 )
-light_energy = 3.0
+light_energy = 1.0
 light_indirect_energy = 0.26
 light_negative = false
 light_specular = 0.26
@@ -235,7 +189,7 @@ _sections_unfolded = [ "Directional Shadow", "Light", "Shadow", "Spot", "Transfo
 [node name="Goal" type="Spatial" parent="." index="3"]
 
 editor/display_folded = true
-transform = Transform( 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 5, 0 )
+transform = Transform( 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 5, -1 )
 script = ExtResource( 4 )
 _sections_unfolded = [ "Transform" ]
 
@@ -390,13 +344,13 @@ autostart = true
 [node name="Char" type="Spatial" parent="." index="6"]
 
 editor/display_folded = true
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -2 )
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -2, 1, 0 )
 script = ExtResource( 6 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="CharMesh" type="MeshInstance" parent="Char" index="0"]
 
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.5, 2.46459e-08, 1, 0.151276 )
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -409,9 +363,26 @@ lod_max_hysteresis = 0.0
 mesh = SubResource( 5 )
 skeleton = NodePath("..")
 material/0 = null
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Geometry", "Transform", "material" ]
 
-[node name="Tween" type="Tween" parent="Char" index="1"]
+[node name="CharMesh2" type="MeshInstance" parent="Char" index="1"]
+
+transform = Transform( 0.735352, 0, 2.15583e-08, 0, 0.359956, 0, 4.31167e-08, 0, 0.5, -2.94389e-08, 1.40356, -0.180695 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 5 )
+skeleton = NodePath("..")
+material/0 = null
+_sections_unfolded = [ "Geometry", "Transform", "material" ]
+
+[node name="Tween" type="Tween" parent="Char" index="2"]
 
 repeat = false
 playback_process_mode = 1
@@ -419,6 +390,22 @@ playback_speed = 1.0
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
+
+[node name="Indicador" type="MeshInstance" parent="." index="27"]
+
+layers = 1
+material_override = null
+cast_shadow = 0
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 6 )
+skeleton = NodePath("..")
+material/0 = null
+_sections_unfolded = [ "Geometry", "Transform" ]
 
 [connection signal="timeout" from="Goal/Timer" to="." method="_on_Timer_timeout"]
 

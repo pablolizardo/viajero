@@ -17,7 +17,7 @@ onready var cam = get_node("Camera")
 onready var world = get_parent()
 
 func _ready():
-	cam_far =( ( ( world.sizeX+world.sizeY ) / 2 )* 2.2 )+ 5
+	cam_far =( ( ( world.grid.x+world.grid.z ) / 2 )* 2.2 )+ 5
 	cam_near = cam_far / 0.7
 	cam.size = cam_far
 	
