@@ -195,6 +195,7 @@ _sections_unfolded = [ "Transform", "material" ]
 
 [node name="player" type="Spatial" parent="." index="1"]
 
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="MeshInstance" type="MeshInstance" parent="player" index="0"]

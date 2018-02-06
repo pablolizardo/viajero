@@ -8,6 +8,7 @@ onready var gate = get_node("gate")
 
 export var gameSize = Vector3(10,6,10)
 var matrix = []
+var newPos = Vector3()
 
 func _ready():
 	randomize()
@@ -29,12 +30,27 @@ func _ready():
 	set_process(true)
 	
 func _process(delta):
-	for i in range(gameSize.x):
-		for j in range(gameSize.z):
-			player.translate(Vector3(i*delta/100,matrix[i][j]*delta/100,j*delta/100))
+	if Input.is_action_just_pressed("ui_up"):
+#		player.translate(Vector3(1,0,0))
+		newPos.x +=1
+		player.set_translation( Vector3( newPos.x, matrix[newPos.x][newPos.z]+1 ,newPos.z ) )
+	if Input.is_action_just_pressed("ui_down"):
+#		player.translate(Vector3(1,0,0))
+		newPos.x -=1
+		player.set_translation( Vector3( newPos.x, matrix[newPos.x][newPos.z] +1,newPos.z ) )
+	if Input.is_action_just_pressed("ui_right"):
+#		player.translate(Vector3(1,0,0))
+		newPos.z +=1
+		player.set_translation( Vector3( newPos.x, matrix[newPos.x][newPos.z]+1 ,newPos.z ) )
+	if Input.is_action_just_pressed("ui_left"):
+#		player.translate(Vector3(1,0,0))
+		newPos.z -=1
+		player.set_translation( Vector3( newPos.x, matrix[newPos.x][newPos.z] +1,newPos.z ) )
+		
+	pass
 	
 func setPlayerPos():
-	player.translate(Vector3(minPos()) + Vector3(0,1,0))
+	player.set_translation(Vector3(minPos()) )
 
 func setGatePos():
 	gate.translate(Vector3(maxPos()) + Vector3(0,1,0))
