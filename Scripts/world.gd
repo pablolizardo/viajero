@@ -4,12 +4,37 @@ extends Spatial
 
 onready var brick = get_node("brick")
 onready var player = get_node("player")
+onready var tw = get_node("player/Tween")
+
+onready var player_srt = get_node("player/srt")
+onready var tw_2 = get_node("player/srt/Tween")
+
 onready var gate = get_node("gate")
+onready var debPos = get_node("debug/pos")
+onready var debRot = get_node("debug/rot")
+onready var debMat = get_node("debug/matrix")
 
 export var gameSize = Vector3(10,6,10)
 var matrix = []
 var newPos = Vector3()
+var dir = Vector2(0,-1)
+var angle = 0
 
+
+func rotPlayer(side):
+	if (side<0):
+		dir = Vector2(dir.y, -dir.x)
+	else :
+		dir = Vector2(-dir.y, dir.x)
+	#player_srt.rotate_y( dir.angle_to( Vector2(player.translation.x, player.translation.z) ) )
+	angle = rad2deg (dir.angle()) 
+	print(angle)
+	tw_2.interpolate_property(player_srt, "rotation_degrees", player_srt.rotation_degrees, Vector3(0,-angle,0 ), .2, Tween.TRANS_CUBIC,Tween.EASE_IN_OUT)
+	tw_2.start()
+		
+		
+	debRot.text = "RotPlayer  x:" + str(dir.x)  + " y:" + str(dir.y)  + "  angle-> " + str( angle )
+	
 func _ready():
 	randomize()
 	
@@ -30,22 +55,30 @@ func _ready():
 	set_process(true)
 	
 func _process(delta):
+	
+	#debMat.text = "matrix  x:" + str(newPos.x)  + " y:" + str(newPos.y) +  " z:" +  str(newPos.z)
 	if Input.is_action_just_pressed("ui_up"):
-#		player.translate(Vector3(1,0,0))
-		newPos.x +=1
-		player.set_translation( Vector3( newPos.x, matrix[newPos.x][newPos.z]+1 ,newPos.z ) )
+		debPos.text = "PosPlayer  x:" + str(newPos.x)  + " y:" + str(newPos.y) +  " z:" +  str(newPos.z)
+		newPos.x += dir.x
+		newPos.z += dir.y
+		print(player.translation)
+		tw.interpolate_property(player, "translation", player.translation, Vector3( newPos.x, matrix[newPos.x][newPos.z]+1 ,newPos.z ), .2, Tween.TRANS_CUBIC,Tween.EASE_IN_OUT)
+		tw.start()
+		#player.set_translation( Vector3( newPos.x, matrix[newPos.x][newPos.z]+1 ,newPos.z ) )
+		pass
+		
 	if Input.is_action_just_pressed("ui_down"):
-#		player.translate(Vector3(1,0,0))
-		newPos.x -=1
-		player.set_translation( Vector3( newPos.x, matrix[newPos.x][newPos.z] +1,newPos.z ) )
+		pass
+		#newPos.x -=1
+		#player.set_translation( Vector3( newPos.x, matrix[newPos.x][newPos.z] +1,newPos.z ) )
 	if Input.is_action_just_pressed("ui_right"):
-#		player.translate(Vector3(1,0,0))
-		newPos.z +=1
-		player.set_translation( Vector3( newPos.x, matrix[newPos.x][newPos.z]+1 ,newPos.z ) )
+		rotPlayer(1)
+		#newPos.z +=1
+		#player.set_translation( Vector3( newPos.x, matrix[newPos.x][newPos.z]+1 ,newPos.z ) )
 	if Input.is_action_just_pressed("ui_left"):
-#		player.translate(Vector3(1,0,0))
-		newPos.z -=1
-		player.set_translation( Vector3( newPos.x, matrix[newPos.x][newPos.z] +1,newPos.z ) )
+		rotPlayer(-1)
+		#newPos.z -=1
+		#player.set_translation( Vector3( newPos.x, matrix[newPos.x][newPos.z] +1,newPos.z ) )
 		
 	pass
 	

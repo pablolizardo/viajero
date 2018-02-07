@@ -83,9 +83,7 @@ func _ready():
 			#blockNew.get_node("cubo_mesh").get_surface_material().set("alpha", 0.3)
 			#blockNew.get_node("RayCast").get_collision_point()
 	
-	for i in range(grid.x):
-		var indi = Indicador.instance()
-		indi.x = 
+	
 	# setear posicion del halo de luz en la posicion mas alta
 	Goal.translation.x = maximun_pos.x- grid.x/2
 	Goal.translation.z = maximun_pos.y- grid.z/2

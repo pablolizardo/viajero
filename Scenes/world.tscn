@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/world.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/brick.gd" type="Script" id=2]
-[ext_resource path="res://Enviroments/rojo.tres" type="Environment" id=3]
-[ext_resource path="res://Materials/Blanco_transparente.tres" type="Material" id=4]
+[ext_resource path="res://Scenes/player_matrix.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Enviroments/rojo.tres" type="Environment" id=4]
+[ext_resource path="res://Materials/Blanco_transparente.tres" type="Material" id=5]
+[ext_resource path="res://fonts/Dosis-Bold.ttf" type="DynamicFontData" id=6]
 
 [sub_resource type="BoxShape" id=1]
 
@@ -67,75 +69,24 @@ uv2_triplanar_sharpness = 1.0
 proximity_fade_enable = false
 distance_fade_enable = false
 
-[sub_resource type="CubeMesh" id=4]
-
-size = Vector3( 0.7, 2, 0.2 )
-subdivide_width = 0
-subdivide_height = 0
-subdivide_depth = 0
-
-[sub_resource type="SpatialMaterial" id=5]
-
-render_priority = 0
-flags_transparent = false
-flags_unshaded = false
-flags_vertex_lighting = false
-flags_no_depth_test = false
-flags_use_point_size = false
-flags_world_triplanar = false
-flags_fixed_size = false
-flags_albedo_tex_force_srgb = false
-vertex_color_use_as_albedo = false
-vertex_color_is_srgb = false
-params_diffuse_mode = 0
-params_specular_mode = 0
-params_blend_mode = 0
-params_cull_mode = 0
-params_depth_draw_mode = 0
-params_line_width = 1.0
-params_point_size = 1.0
-params_billboard_mode = 0
-params_grow = false
-params_use_alpha_scissor = false
-albedo_color = Color( 0, 0.976562, 1, 1 )
-metallic = 0.0
-metallic_specular = 0.5
-metallic_texture_channel = 0
-roughness = 0.0
-roughness_texture_channel = 0
-emission_enabled = false
-normal_enabled = false
-rim_enabled = false
-clearcoat_enabled = false
-anisotropy_enabled = false
-ao_enabled = false
-depth_enabled = false
-subsurf_scatter_enabled = false
-transmission_enabled = false
-refraction_enabled = false
-detail_enabled = false
-uv1_scale = Vector3( 1, 1, 1 )
-uv1_offset = Vector3( 0, 0, 0 )
-uv1_triplanar = false
-uv1_triplanar_sharpness = 1.0
-uv2_scale = Vector3( 1, 1, 1 )
-uv2_offset = Vector3( 0, 0, 0 )
-uv2_triplanar = false
-uv2_triplanar_sharpness = 1.0
-proximity_fade_enable = false
-distance_fade_enable = false
-_sections_unfolded = [ "Albedo" ]
-
 [sub_resource type="CylinderMesh" id=6]
 
-material = ExtResource( 4 )
+material = ExtResource( 5 )
 top_radius = 0.3
 bottom_radius = 0.3
 height = 40.0
 radial_segments = 6
 rings = 1
 
-[node name="world" type="Spatial" index="0"]
+[sub_resource type="DynamicFont" id=7]
+
+size = 40
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 6 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[node name="world" type="Spatial"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -145,6 +96,7 @@ gameSize = Vector3( 10, 4, 10 )
 "bricks",
 ]]
 
+editor/display_folded = true
 script = ExtResource( 2 )
 
 [node name="Area" type="Area" parent="brick" index="0"]
@@ -193,51 +145,14 @@ skeleton = NodePath("..")
 material/0 = SubResource( 3 )
 _sections_unfolded = [ "Transform", "material" ]
 
-[node name="player" type="Spatial" parent="." index="1"]
-
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="MeshInstance" type="MeshInstance" parent="player" index="0"]
-
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0.5 )
-layers = 1
-material_override = null
-cast_shadow = 1
-extra_cull_margin = 0.0
-use_in_baked_light = false
-lod_min_distance = 0.0
-lod_min_hysteresis = 0.0
-lod_max_distance = 0.0
-lod_max_hysteresis = 0.0
-mesh = SubResource( 4 )
-skeleton = NodePath("..")
-material/0 = SubResource( 5 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="MeshInstance2" type="MeshInstance" parent="player" index="1"]
-
-transform = Transform( 0.724473, 0, 0, 0, 0.44167, 0, 0, 0, 1.74695, 0.5, 1.35913, 0.687408 )
-layers = 1
-material_override = null
-cast_shadow = 1
-extra_cull_margin = 0.0
-use_in_baked_light = false
-lod_min_distance = 0.0
-lod_min_hysteresis = 0.0
-lod_max_distance = 0.0
-lod_max_hysteresis = 0.0
-mesh = SubResource( 4 )
-skeleton = NodePath("..")
-material/0 = SubResource( 5 )
-_sections_unfolded = [ "Transform" ]
+[node name="player" parent="." index="1" instance=ExtResource( 3 )]
 
 [node name="Camera" type="Camera" parent="." index="2"]
 
 transform = Transform( 0.707107, 0.40558, -0.579228, 0, 0.819152, 0.573576, 0.707107, -0.40558, 0.579228, -8, 9, 18 )
 keep_aspect = 1
 cull_mask = 1048575
-environment = ExtResource( 3 )
+environment = ExtResource( 4 )
 h_offset = 0.0
 v_offset = 0.0
 doppler_tracking = 0
@@ -277,6 +192,8 @@ directional_shadow_max_distance = 200.0
 
 [node name="gate" type="Spatial" parent="." index="4"]
 
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, 1 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="MeshInstance" type="MeshInstance" parent="gate" index="0"]
@@ -295,6 +212,83 @@ mesh = SubResource( 6 )
 skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Transform" ]
+
+[node name="debug" type="Control" parent="." index="105"]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="pos" type="Label" parent="debug" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 370.0
+margin_bottom = 52.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 7 )
+text = "test"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="rot" type="Label" parent="debug" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 60.0
+margin_right = 370.0
+margin_bottom = 112.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 7 )
+text = "test"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="matrix" type="Label" parent="debug" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 120.0
+margin_right = 370.0
+margin_bottom = 172.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 7 )
+text = "test"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
 
 [connection signal="mouse_entered" from="brick/Area" to="brick" method="_on_Area_mouse_entered"]
 
@@ -562,21 +556,21 @@ _sections_unfolded = [ "Transform" ]
 
 [connection signal="mouse_entered" from="brick45/Area" to="brick45" method="_on_Area_mouse_entered"]
 
-[connection signal="mouse_exited" from="brick45/Area" to="." method="_on_Area_mouse_exited"]
-
 [connection signal="mouse_exited" from="brick45/Area" to="brick45" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick45/Area" to="." method="_on_Area_mouse_exited"]
 
 [connection signal="mouse_entered" from="brick46/Area" to="brick46" method="_on_Area_mouse_entered"]
 
-[connection signal="mouse_exited" from="brick46/Area" to="." method="_on_Area_mouse_exited"]
-
 [connection signal="mouse_exited" from="brick46/Area" to="brick46" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick46/Area" to="." method="_on_Area_mouse_exited"]
 
 [connection signal="mouse_entered" from="brick47/Area" to="brick47" method="_on_Area_mouse_entered"]
 
-[connection signal="mouse_exited" from="brick47/Area" to="." method="_on_Area_mouse_exited"]
-
 [connection signal="mouse_exited" from="brick47/Area" to="brick47" method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick47/Area" to="." method="_on_Area_mouse_exited"]
 
 [connection signal="mouse_entered" from="brick48/Area" to="brick48" method="_on_Area_mouse_entered"]
 
@@ -592,21 +586,21 @@ _sections_unfolded = [ "Transform" ]
 
 [connection signal="mouse_entered" from="brick50/Area" to="brick50" method="_on_Area_mouse_entered"]
 
-[connection signal="mouse_exited" from="brick50/Area" to="brick50" method="_on_Area_mouse_exited"]
-
 [connection signal="mouse_exited" from="brick50/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick50/Area" to="brick50" method="_on_Area_mouse_exited"]
 
 [connection signal="mouse_entered" from="brick51/Area" to="brick51" method="_on_Area_mouse_entered"]
 
-[connection signal="mouse_exited" from="brick51/Area" to="brick51" method="_on_Area_mouse_exited"]
-
 [connection signal="mouse_exited" from="brick51/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick51/Area" to="brick51" method="_on_Area_mouse_exited"]
 
 [connection signal="mouse_entered" from="brick52/Area" to="brick52" method="_on_Area_mouse_entered"]
 
-[connection signal="mouse_exited" from="brick52/Area" to="brick52" method="_on_Area_mouse_exited"]
-
 [connection signal="mouse_exited" from="brick52/Area" to="." method="_on_Area_mouse_exited"]
+
+[connection signal="mouse_exited" from="brick52/Area" to="brick52" method="_on_Area_mouse_exited"]
 
 [connection signal="mouse_entered" from="brick53/Area" to="brick53" method="_on_Area_mouse_entered"]
 

@@ -71,7 +71,7 @@ _sections_unfolded = [ "Albedo", "Flags", "Parameters", "Vertex Color" ]
 [sub_resource type="Theme" id=3]
 
 
-[sub_resource type="CubeMesh" id=5]
+[sub_resource type="CubeMesh" id=4]
 
 material = ExtResource( 7 )
 size = Vector3( 0.7, 2, 0.7 )
@@ -79,7 +79,7 @@ subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[sub_resource type="CylinderMesh" id=6]
+[sub_resource type="CylinderMesh" id=5]
 
 top_radius = 0.3
 bottom_radius = 0.3
@@ -91,6 +91,7 @@ rings = 1
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
+grid = Vector3( 20, 3, 20 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
 
@@ -360,7 +361,7 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 5 )
+mesh = SubResource( 4 )
 skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Geometry", "Transform", "material" ]
@@ -377,7 +378,7 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 5 )
+mesh = SubResource( 4 )
 skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Geometry", "Transform", "material" ]
@@ -391,7 +392,7 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[node name="Indicador" type="MeshInstance" parent="." index="27"]
+[node name="Indicador" type="MeshInstance" parent="." index="7"]
 
 layers = 1
 material_override = null
@@ -402,7 +403,7 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 6 )
+mesh = SubResource( 5 )
 skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Geometry", "Transform" ]
